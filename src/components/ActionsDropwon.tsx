@@ -18,8 +18,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Ellipsis, EllipsisVertical, MenuIcon } from "lucide-react";
+import { Models } from "node-appwrite";
 
-const ActionsDropwon = ({ files }: { files: string }) => {
+const ActionsDropwon = ({ files }: { files: Models.Document }) => {
     const [isModalOpen, setisModalOpen] = useState(false);
     const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   return (
