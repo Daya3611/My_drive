@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ActionsDropwon = () => {
+const ActionsDropwon = ({files}:{files:string}) => {
   return (
     <div>
       s
