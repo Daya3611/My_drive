@@ -9,7 +9,7 @@ export const createSessionClient = async () => {
         .setEndpoint(appwriteConfig.endpointUrl)
         .setProject(appwriteConfig.projectId);
 
-    let session = (await cookies()).get("appwrite-session");
+    const session = (await cookies()).get("appwrite-session");
 
     if (!session || !session.value) {
         redirect("/sign-in");
