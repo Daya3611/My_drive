@@ -25,7 +25,7 @@ function Sidebar({fullName, email}: Props) {
         <nav className='sidebar-nav'>
             <ul className='flex flex-1 flex-col gap-6'>
                 {navItems.map((items, index) => {
-                    const active = pathname === items.url;
+                    // const active = pathname === items.url;
 
                     return (
                         <Link href={items.url} key={index} className='lg:w-full'>

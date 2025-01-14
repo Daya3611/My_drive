@@ -6,14 +6,19 @@ import { ID, Models, Query } from "node-appwrite";
 import { constructFileUrl, getFileType, parseStringify } from "../utils";
 // import { handleError } from "./users.actions";
 import { revalidatePath } from "next/cache";
-import { parse } from "path";
 import { getCurrentUser } from "./users.actions";
-import { create } from "domain";
 
 const handleError = (error: unknown, message: string) => {
   console.log(error, message);
   throw error;
 };
+
+interface UploadFileProps {
+  file: File;
+  ownerId: string;
+  accountId: string;
+}
+
 export const uploadFile = async ({
   file,
   ownerId,
@@ -103,6 +108,12 @@ function createQueries(currentUser: Models.Document) {
   return queries;
 }
 
+interface RenameFileProps {
+  fileId: string;
+  name: string;
+  path: string;
+  extension: string; 
+}
 export const renameFile = async ({
   fileId,
   name,

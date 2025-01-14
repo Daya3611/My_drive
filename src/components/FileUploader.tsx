@@ -1,12 +1,11 @@
 "use client"
-import React, {MouseEvent, useCallback, useState} from 'react'
+import React, { useCallback, useState} from 'react'
 import {useDropzone} from 'react-dropzone'
 import { Button } from './ui/button'
 import { cn, convertFileToUrl, getFileType } from '@/lib/utils'
 import Image from 'next/image'
 import Thumbnail from './Thumbnail'
 import { MAX_FILE_SIZE } from '../../constants'
-import { set } from 'zod'
 import { useToast } from '@/hooks/use-toast'
 import { uploadFile } from '@/lib/actions/file.actions'
 import { usePathname } from 'next/navigation'
@@ -67,7 +66,7 @@ export default function FileUploader({ownerID, accountId , className}: Props) {
     await Promise.all(uploadPromises);
 
   }, [ownerID, accountId, path]);
-  const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+  const {getRootProps, getInputProps} = useDropzone({onDrop})
 
   return (
     <div {...getRootProps()} className='cursor-pointer'>

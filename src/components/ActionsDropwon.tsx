@@ -3,11 +3,9 @@ import React, { useState } from "react";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 
 import {
@@ -18,7 +16,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Ellipsis, EllipsisVertical, MenuIcon } from "lucide-react";
+import { EllipsisVertical } from "lucide-react";
 import { Models } from "node-appwrite";
 import { actionsDropdownItems } from "../../constants";
 import Link from "next/link";
@@ -28,7 +26,6 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { renameFile } from "@/lib/actions/file.actions";
 import { usePathname } from "next/navigation";
-import { set } from "zod";
 
 const ActionsDropwon = ({ files }: { files: Models.Document }) => {
   const [isModalOpen, setisModalOpen] = useState(false);

@@ -3,8 +3,6 @@ import React, { useState } from 'react'
 import {
     Sheet,
     SheetContent,
-    SheetDescription,
-    SheetHeader,
     SheetTitle,
     SheetTrigger,
   } from "@/components/ui/sheet"
@@ -28,7 +26,7 @@ interface Props {
     userId: string;
 }
   
-function MobileNavigation({$id:ownerID, accountId, fullName , email, avatar,userId}: Props) {
+function MobileNavigation({$id:ownerID, accountId, fullName , email, avatar}: Props) {
     const [open, setOpen] = useState(false);
     const pathname = usePathname();
   return (
@@ -59,7 +57,7 @@ function MobileNavigation({$id:ownerID, accountId, fullName , email, avatar,user
                 <nav className='mobile-nav'>
                     <ul className='mobile-nav-list'>
                     {navItems.map((items, index) => {
-                    const active = pathname === items.url;
+                    // const active = pathname === items.url;
 
                         return (
                             <Link href={items.url} key={index} className='lg:w-full'>

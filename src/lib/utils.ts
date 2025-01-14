@@ -110,6 +110,8 @@ export const formatDateTime = (isoString: string | null | undefined) => {
   return `${time}, ${day} ${month}`;
 };
 
+interface FileType {}
+
 export const getFileIcon = (
   extension: string | undefined,
   type: FileType | string,

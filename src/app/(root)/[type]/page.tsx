@@ -4,6 +4,12 @@ import { getFile } from '@/lib/actions/file.actions';
 import { Models } from 'node-appwrite';
 import React from 'react'
 
+interface SearchParamProps {
+    params: {
+        type: string;
+    }
+}
+
 const Page = async({params}: SearchParamProps) =>{
     const type = (await params)?.type as string || "";
     const files = await getFile();
@@ -30,7 +36,7 @@ const Page = async({params}: SearchParamProps) =>{
       {files &&  (
         <section>
           {files.documents.map((files: Models.Document) => (
-            <div className='' >
+            <div className='' key={files.$id}>
               {/* <h1 className='h'>{files.name}</h1> */}
               {/* <h1 className='h'>{files.owner.fullName}</h1> */}
               <Card key={files.$id} files={files}/>
