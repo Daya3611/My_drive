@@ -5,9 +5,9 @@ import { Models } from 'node-appwrite';
 import React from 'react'
 
 interface SearchParamProps {
-    params: {
+    params: Promise<{
         type: string;
-    }
+    }>
 }
 
 const Page = async({params}: SearchParamProps) =>{
