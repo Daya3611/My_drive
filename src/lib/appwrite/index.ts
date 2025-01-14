@@ -1,21 +1,26 @@
-"use server"
-import { Account, Avatars, Client, Databases, Storage } from "node-appwrite"
-import { appwriteConfig } from "./config"
+"use server";
+import { Account, Avatars, Client, Databases, Storage } from "node-appwrite";
+import { appwriteConfig } from "./config";
 import { cookies } from "next/headers";
-import { Database } from "lucide-react";
+import { redirect } from "next/navigation";
 
 export const createSessionClient = async () => {
     const client = new Client()
         .setEndpoint(appwriteConfig.endpointUrl)
         .setProject(appwriteConfig.projectId);
 
-    const session = ((await cookies()).get('appwrite-session'));
+    let session = (await cookies()).get("appwrite-session");
 
-    if(!session || !session.value) {
-        throw new Error('Redirect to /login');
+    if (!session || !session.value) {
+        redirect("/sign-in");
     }
     if (session && session.value) {
         client.setSession(session.value);
+        console.log(session.value);
+        // Set automatic logout after 3 seconds
+        setTimeout(async () => {
+            (await cookies()).delete("appwrite-session");
+        }, 3000);
     }
 
     return {
@@ -24,16 +29,15 @@ export const createSessionClient = async () => {
         },
         get databases() {
             return new Databases(client);
-        }
-    }
-}
+        },
+    };
+};
 
 export const createAdminClient = async () => {
     const client = new Client()
-    .setEndpoint(appwriteConfig.endpointUrl)
-    .setProject(appwriteConfig.projectId)
-    .setKey(appwriteConfig.secretKey);
-
+        .setEndpoint(appwriteConfig.endpointUrl)
+        .setProject(appwriteConfig.projectId)
+        .setKey(appwriteConfig.secretKey);
 
     return {
         get account() {
@@ -47,6 +51,6 @@ export const createAdminClient = async () => {
         },
         get avatars() {
             return new Avatars(client);
-        }
-    }
-}
+        },
+    };
+};
